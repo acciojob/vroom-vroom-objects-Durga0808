@@ -1,25 +1,27 @@
-// Complete the js code
-class Car {
-	constructor(make, model){
-		this.make=make;
-		this.model=model;
-	}
-
-	getMakeModel(){
-		return this.model;
-	}
+// Car constructor function
+function Car(make, model) {
+  this.make = make;
+  this.model = model;
 }
 
-class SportsCar {
-	constructor(make, model, topSpeed){
-		super(make,model);
-		this.topSpeed=topSpeed;
-	}
+// Method to get make and model
+Car.prototype.getMakeModel = function() {
+  return `${this.make} ${this.model}`;
+};
 
-	getToSpeed(){
-		return this.topSpeed;
-	}
+// SportsCar constructor function inheriting from Car
+function SportsCar(make, model, topSpeed) {
+  Car.call(this, make, model);
+  this.topSpeed = topSpeed;
 }
+
+SportsCar.prototype = Object.create(Car.prototype);
+SportsCar.prototype.constructor = SportsCar;
+
+// Method to get top speed
+SportsCar.prototype.getTopSpeed = function() {
+  return this.topSpeed;
+};
 
 // Do not change the code below
 window.Car = Car;
